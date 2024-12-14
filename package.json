@@ -1,29 +1,153 @@
 {
-  "name": "backend",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+  "state": {
+    "currentPage": "login",
+    "role": "",
+    "password": "",
+    "confirmPassword": "",
+    "email": "",
+    "errorMessage": "",
+    "successMessage": "",
+    "securityAnswer": "",
+    "isSecurityQuestionVisible": false
   },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^7.0.2"
+  "methods": {
+    "resetForm": {
+      "description": "Resets form and messages",
+      "actions": [
+        "setEmail('')",
+        "setPassword('')",
+        "setConfirmPassword('')",
+        "setRole('')",
+        "setErrorMessage('')",
+        "setSuccessMessage('')",
+        "setSecurityAnswer('')"
+      ]
+    },
+    "showSignup": {
+      "description": "Shows Signup page",
+      "actions": [
+        "resetForm()",
+        "setCurrentPage('signup')"
+      ]
+    },
+    "showLogin": {
+      "description": "Shows Login page",
+      "actions": [
+        "resetForm()",
+        "setCurrentPage('login')",
+        "setIsSecurityQuestionVisible(false)"
+      ]
+    },
+    "validateSignupForm": {
+      "description": "Validates the signup form before submission",
+      "actions": [
+        "Check if email is empty",
+        "Check if email is valid using regex",
+        "Check if password is empty",
+        "Check if password matches confirmPassword",
+        "Check if role is selected",
+        "Set error message if validation fails",
+        "Set success message and show login if successful"
+      ]
+    },
+    "handleSecurityAnswerSubmit": {
+      "description": "Handles the submission of the security answer",
+      "actions": [
+        "Check if security answer is empty",
+        "Set error message if empty",
+        "Set success message and proceed to reset-password page"
+      ]
+    },
+    "handleNewPasswordSubmit": {
+      "description": "Handles the new password submission",
+      "actions": [
+        "Check if password is empty",
+        "Check if password matches confirmPassword",
+        "Set error message if validation fails",
+        "Set success message and show login if successful"
+      ]
+    }
   },
-  "devDependencies": {
-    "@eslint/js": "^9.15.0",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9.15.0",
-    "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.14",
-    "globals": "^15.12.0",
-    "vite": "^6.0.1"
+  "pages": {
+    "login": {
+      "title": "Login",
+      "instructions": "Select Your Role to Access the Portal",
+      "form": {
+        "roleSelect": [
+          {"value": "", "label": "Select Role", "disabled": true},
+          {"value": "HR", "label": "HR"},
+          {"value": "Manager", "label": "Manager"},
+          {"value": "Employee", "label": "Employee"},
+          {"value": "New User", "label": "New User"}
+        ],
+        "fields": [
+          {"type": "text", "placeholder": "Username", "required": true},
+          {"type": "password", "placeholder": "Password", "required": true}
+        ],
+        "buttons": [
+          {"type": "button", "label": "Login", "action": "login"},
+          {"type": "link", "label": "Forgot Password?", "action": "forgot-password"},
+          {"type": "link", "label": "Create one here", "action": "signup"}
+        ]
+      }
+    },
+    "signup": {
+      "title": "Create a New Account",
+      "instructions": "Fill in the details below to create your account",
+      "form": {
+        "fields": [
+          {"type": "text", "placeholder": "Full Name", "required": true},
+          {"type": "email", "placeholder": "Email", "value": "email", "required": true},
+          {"type": "password", "placeholder": "Password", "value": "password", "required": true},
+          {"type": "password", "placeholder": "Confirm Password", "value": "confirmPassword", "required": true},
+          {"type": "select", "placeholder": "Select Role", "value": "role", "options": [
+            {"value": "HR", "label": "HR"},
+            {"value": "Manager", "label": "Manager"},
+            {"value": "Employee", "label": "Employee"}
+          ], "required": true}
+        ],
+        "buttons": [
+          {"type": "submit", "label": "Sign Up"},
+          {"type": "link", "label": "Sign in here", "action": "login"}
+        ]
+      }
+    },
+    "forgot-password": {
+      "title": "Forgot Password",
+      "instructions": "Enter your email associated with your role",
+      "form": {
+        "fields": [
+          {"type": "email", "placeholder": "Enter your registered email", "value": "email", "required": true}
+        ],
+        "buttons": [
+          {"type": "button", "label": "Submit", "action": "showSecurityQuestion"}
+        ]
+      }
+    },
+    "securityQuestion": {
+      "title": "Security Question",
+      "question": "Who is your role model?",
+      "form": {
+        "fields": [
+          {"type": "text", "placeholder": "Enter your answer", "value": "securityAnswer", "required": true}
+        ],
+        "buttons": [
+          {"type": "button", "label": "Submit Answer", "action": "handleSecurityAnswerSubmit"}
+        ]
+      }
+    },
+    "reset-password": {
+      "title": "Reset Password",
+      "instructions": "Enter your new password",
+      "form": {
+        "fields": [
+          {"type": "password", "placeholder": "New Password", "value": "password", "required": true},
+          {"type": "password", "placeholder": "Confirm New Password", "value": "confirmPassword", "required": true}
+        ],
+        "buttons": [
+          {"type": "button", "label": "Reset Password", "action": "handleNewPasswordSubmit"}
+        ]
+      }
+    }
   }
 }
