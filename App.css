@@ -1,0 +1,157 @@
+/* General body and container styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #205040; /* Light background */
+}
+
+/* Container to manage the different sections */
+.container {
+  width: 100%;
+  max-width: 400px;
+  height: 600px;
+  padding: 70px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+select:focus {
+  border-color: #24a388;
+  outline: none;
+}
+
+/* Header styles */
+h1 {
+  font-size: 1.8rem;
+  color: #063023;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+/* Section messages and text */
+p {
+  color: #4e4747;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Input fields styling */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 95%;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 1rem;
+  border: 1px solid #6b5d5d;
+  border-radius: 5px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #585f68;
+  outline: none;
+}
+
+/* Select dropdown for role selection */
+select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 1rem;
+  border: 1px solid #504646;
+  border-radius: 5px;
+}
+
+/* Error message styling */
+.error {
+  color: #ff4d4d;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Buttons styling */
+button {
+  width:40%;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 1rem;
+  background-color: #147550;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: center;
+}
+
+button:hover {
+  background-color: #12745e;
+}
+
+/* Styling for account message text */
+.account-message {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.account-message a {
+  color: #169b73;
+  text-decoration: none;
+}
+
+.account-message a:hover {
+  text-decoration: underline;
+}
+
+/* Styling for links */
+a {
+  color: #10705b;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  p {
+    font-size: 0.85rem;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  select {
+    padding: 10px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}
